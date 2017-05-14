@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        {{u.user.username}}
+        <br> <img src="{{u.user.profile_picture}}">
+
+        <h1>Hello Maps!</h1>
+        <p>Your current location is <b id="loc">unknown</b></p>
+        <img id="mymap">
+
+
+        <iframe id="m"
+                width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                allowfullscreen>
+        </iframe>
+        <br>
+        <script>
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+            navigator.geolocation.watchPosition(
+                function (pos) {
+                    console.log("got position");
+                    console.log(pos);
+                    var center = pos.coords.latitude + "," + pos.coords.longitude;
+                    var url = "https://www.google.com/maps/embed/v1/view?key=AIzaSyDb-7zumf__n5lt43-pqLLAoZDc7SuyanQ&center=" + center + "&zoom=18&maptype=satellite";
+                    document.getElementById("m").src = url;
+                    document.getElementById("loc").innerHTML = center;
+                },
+                function (err) {
+                    console.warn("cannot get position");
+                    console.warn(err);
+                },
+                options)
+
+        </script>
+    </body>
+
+</html>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'RA/base.html' %}
+
+
+{% block header %}
+
+Provided Services
+
+{% endblock %}
+
+
+{% block content %}
+
+We provide all services that are provided within a karaj and much more.
+Find below a list of our services with description of each service:
+
+{% for service in service %}
+<h1>{{service.name}}</h1>
+<p>{{service.description}}</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'RA/index.html' %}
+{% load crispy_forms_tags %}
+
+{% block header %}
+Welcome to Road Assistance
+Please Register or Log in
+{% endblock %}
+
+
+{% block content %}
+
+<form method="post" action="{% url 'RA:register' %}">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input type="submit" value="Register" class="btn btn-block btn-primary">
+</form>
+
+
+
+{% endblock %}
+

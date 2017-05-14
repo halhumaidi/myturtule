@@ -1,0 +1,17 @@
+{% extends 'RA/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block header %}
+    Sign in
+{% endblock %}
+
+
+{% block content %}
+
+    <form method="post" action="{% url 'RA:signin' %}">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" value="Sign In" class="btn btn-block btn-primary">
+    </form>
+
+{% endblock %}

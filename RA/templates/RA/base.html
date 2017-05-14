@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+    <head>
+
+        <link href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" rel="stylesheet"/>
+        <script src="{% static '/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+        <meta charset="UTF-8"/>
+        <title>Road Assistance</title>
+    </head>
+    <style>
+        #jumbo{
+        background-image: url("{% static 'RA/Unknown.jpg' %}");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        }
+
+    </style>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'RA:about' %}">About Road Assistance</a>
+                </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'RA:services' %}">Our Services</a>
+                </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">more</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">contact us</a></li>
+                </ul>
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="container">
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }} <a href="{% url 'RA:logout' %}">[logout]</a></p>
+            {% else %}
+            <p>Welcome, Guest <a href="{% url 'RA:signin' %}">[login]</a></p>
+            {% endif %}
+
+            <div id="jumbo" class="jumbotron text-center">
+
+                <h1>
+                    {% block header %}
+                    {% endblock %}
+                </h1>
+            </div>
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
+        <div>This site was created by Haya Al-Humaidi</div>
+    </body>
+</html>
+
